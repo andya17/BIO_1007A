@@ -1,0 +1,43 @@
+---
+title: "Assignment 1"
+author: "Andy Atallah"
+date: "2023-01-10"
+output: html_document
+---
+
+git  
+version control for local computer: keep, maintain, restore past versions of files  
+initially for programmers collaborating  
+Good files - plaintext .txt, R scripts .R, Markdown .md/.Rmd, HTML  
+Bad files - PDFs, videos, JPEGs, Word doc,   
+Markdown - text formatting language (markup)  
+
+Github  
+Remote internet database for tracking changes, public data storage  
+Required for transparency in science sometimes  
+Cloning is making a copy and downloading from repo to local computer  
+Working on a repo is making changes to files - adding new file, alter  existing, delete existing  
+	Commit noun - snapshot of current file system  
+	Commit verb - saving and recording changes  
+	Forking - breaking away from main branch (master branch) by cloning one of your commits  
+		Can also merge commits with main branch  
+	Changing files and committing changes loop until you’re ready to push 
+		transferring changes from local to Github  
+	Can also pull from Github if changes have been made on website  
+
+git status  
+git add -A  
+git commit -am “message”  
+git push  
+
+R project  
+Helps divide work into multiple contexts; each project has own working directory and workspace, history, and source documents  
+Link them up with git and Github  
+
+Github homepage new  
+readme: yes  
+gitignore: no  
+license: MIT  
+copy http address (code tab)  
+RStudio new project, version control, git, same project directory name  
+open terminal in RStudio  
