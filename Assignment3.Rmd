@@ -11,48 +11,47 @@ a <- 2.2
 b <- 3.3
 
 z <- x^a^b
-"Output: 3.61714"
+print(z)
 
 z <- (x^a)^b
-"Output: 1.997611"
+print(z)
 
 z <- 3*x^3 + 2*x^2 + 1
-"Output: 7.413"
+print(z)
 ```
 
 ## Question 2
 ```{r}
 z <- c(seq(from=1, to=8), seq(from=7, to=1))
-"Output: 1 2 3 4 5 6 7 8 7 6 5 4 3 2 1"
+print(z)
 
 z <- rep(x=1:5, c(1, 2, 3, 4, 5))
-"Output: 1 2 2 3 3 3 4 4 4 4 5 5 5 5 5"
+print(z)
 
 z <- rep(x=5:1, c(1, 2, 3, 4, 5))
-"Output: 5 4 4 3 3 3 2 2 2 2 1 1 1 1 1"
+print(z)
 ```
 
 ## Question 3
 ```{r}
 queue <- c("sheep", "fox", "owl", "ant")
+print(queue)
 
 queue <- c(queue[1:4], "serpent")
-"Output: sheep   fox     owl     ant     serpent"
+print(queue)
 
 queue <- queue[2:5]
-"Output: fox     owl     ant     serpent"
+print(queue)
 
 queue[1] <- "donkey"
-"Output: donkey  fox     owl     ant     serpent"
+print(queue)
 
 queue <- queue[1:4]
-"Output: donkey fox    owl    ant"
+print(queue)
 
-append(queue, "aphid", after=4)
-"Output: donkey fox    owl    ant    aphid"
+queue <- append(queue, "aphid", after=3)
+print(queue)
 
-queue <- c(queue[1:4], "aphid")
-queue <- c(F, F, F, F, T)
-which(queue)
+which(queue == "aphid")
 ```
 
