@@ -1,0 +1,78 @@
+---
+title: "Weekly Assignment 1"
+author: "Andy Atallah"
+date: "2023-01-17"
+output: html_document
+---
+This is a guide for setting up a GitHub webpage in RStudio.
+This guide will be for Mac computers.
+
+1. You should check if git is already installed on your computer. You can open the application called Terminal on your computer and type "git --version". If a version number does not appear, move on to Step 2. If a version number appears, you have git installed and can move onto Step 4.  
+
+2. You should access [the following link](https://developer.apple.com/download/all/), which leads to Apple's website. There, you should scroll down to "Command Line Tools for Xcode 14.2" and download the .dmg file. Open the .dmg file you downloaded and click on the .pkg file inside. Then, follow the instructions provided on the window that opens until the software is successfully installed.  
+
+3. Make sure that git has been installed by typing "git --version" in Terminal; you will see a version number if it is installed. 
+  + If it is not installed, you should try installing Homebrew by pasting the text found at [this link](https://brew.sh/) into Terminal, followed by "brew install git" once Homebrew has been installed. This is not necessary if git was already installed with Xcode.  
+  
+4. Log into [GitHub](https://github.com/) and navigate to the main page. On the left side of the screen, click the green button labeled "New" to create a new repository. Name the repository and provide a description. The other settings include:
+  + Check the box labeled "Add a README file".
+  + Do not add a .gitignore template. 
+  + Choose the MIT License.
+  
+5. Go to the RStudio application and click the name of whatever project you are on in the top right corner of the window. There should be a small graphic of a cube with an R inside to the left of the name. 
+
+6. Click “version control” and then “Git”. 
+  + Access the URL of your newly-created GitHub repository by navigating to the repository home-page and clicking the green button labeled “Code”. 
+  + Paste this URL into the box for “Repository URL.”
+  + Type the exact name of the GitHub repository you just created into the “Project directory name” box.
+  
+7. Generate a Personal Access Token, which authenticates you to make changes to the repository in RStudio. 
+  + Navigate to GitHub and click on your profile picture on the top right of the window.
+  + Click “Settings” and scroll down to “Developer settings” on the left of the page.
+  + Select “Personal access tokens” and choose “Tokens (classic).”
+  + Select the dropdown menu labeled “Generate new token.” Choose “Generate new token (classic).”
+  + Put a note that is relevant to the project. Set it to expire in a long while, perhaps the end of the calendar year. 
+  + Select the box to the left of “repo.”
+  + Scroll down and select “Generate token.”
+  + The token number will only show once, so copy it down and save it.
+  + In RStudio, type the following in the Console tab.
+```
+install.packages("credentials")
+```
+  + In RStudio, type the following in the Terminal tab.
+```
+git config --global user.email "put github email here"
+git config --global user.name "put your name here"
+credentials::set_github_pat("put PAT here”)
+```
+
+8. Create the index page of your webpage.
+  + Navigate to the top left of the RStudio window and select the icon with a blank page and a green plus sign. + Select “R Markdown…” and title the file “index” with a Default Output Format of HTML.
+  + You can delete everything after line 6 in the Source window which shows up in RStudio and add whatever you would like, using [RMarkdown](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf).
+  + Select “Knit” towards the top of the Source panel when you have made changes. 
+  + Save the file as “index.Rmd”.
+  
+9. Push the changes to GitHub.
+  + In the Terminal tab, which is next to the Console tab, type “git status” to see the names of the files you have changed since creating the repository on GitHub. The file names should be red.
+  + Type “git add -A”.
+  + Type “git commit -am” and place a message in quotation marks that describes the changes you have made. For example:
+```
+git commit -am “Creating the index page.”
+```
+ + Type “git push”.
+  
+10. Set up the webpage on GitHub.
++ Navigate to your repository on GitHub and go to the “Settings” tab, next to “Insights.”
++ Select “Pages” on the left side of the page.
++ Select “Deploy from a branch” under “Source.”
++ Select “main” in the dropdown menu under “Branch” and click “Save.”
++ A link to your webpage should show up soon on this page.
+
+11. To create new pages, create new RMarkdown documents, add content, and push to GitHub using the code in Step 9. The four commands are also pasted below.
+```
+git status
+git add -A
+git commit -am <message>
+git push
+```
+
