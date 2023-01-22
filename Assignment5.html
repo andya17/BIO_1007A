@@ -11,9 +11,9 @@
 
 <meta name="author" content="Andy Atallah" />
 
-<meta name="date" content="2023-01-17" />
+<meta name="date" content="2023-01-19" />
 
-<title>Assignment 4</title>
+<title>Assignment 5</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -350,48 +350,108 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">Assignment 4</h1>
+<h1 class="title toc-ignore">Assignment 5</h1>
 <h4 class="author">Andy Atallah</h4>
-<h4 class="date">2023-01-17</h4>
+<h4 class="date">2023-01-19</h4>
 
 </div>
 
 
-<div id="question-1" class="section level2">
-<h2>Question 1</h2>
-<pre class="r"><code>x &lt;- 1
-n_dims &lt;- as.integer(runif(x[1], min=3, max=10))
-print(n_dims)</code></pre>
-<pre><code>## [1] 3</code></pre>
-<pre class="r"><code>vn &lt;- c(1, as.integer(seq(from = 2, to = n_dims^2)))
-print(vn)</code></pre>
-<pre><code>## [1] 1 2 3 4 5 6 7 8 9</code></pre>
-<pre class="r"><code>sample(vn)</code></pre>
-<pre><code>## [1] 9 5 7 4 2 1 8 3 6</code></pre>
-<pre class="r"><code>m &lt;- matrix(vn, nrow=n_dims)
-print(m)</code></pre>
-<pre><code>##      [,1] [,2] [,3]
-## [1,]    1    4    7
-## [2,]    2    5    8
-## [3,]    3    6    9</code></pre>
-<pre class="r"><code>t(m)</code></pre>
-<pre><code>##      [,1] [,2] [,3]
-## [1,]    1    2    3
-## [2,]    4    5    6
-## [3,]    7    8    9</code></pre>
-<pre class="r"><code>print(m)</code></pre>
-<pre><code>##      [,1] [,2] [,3]
-## [1,]    1    4    7
-## [2,]    2    5    8
-## [3,]    3    6    9</code></pre>
-<pre class="r"><code>sum(m[1,])</code></pre>
-<pre><code>## [1] 12</code></pre>
-<pre class="r"><code>mean(m[1,])</code></pre>
-<pre><code>## [1] 4</code></pre>
-<pre class="r"><code>sum(m[n_dims,])</code></pre>
-<pre><code>## [1] 18</code></pre>
-<pre class="r"><code>mean(m[n_dims,])</code></pre>
-<pre><code>## [1] 6</code></pre>
+<div id="question-2" class="section level2">
+<h2>Question 2</h2>
+<pre class="r"><code>myList &lt;- list(my_matrix = matrix(data=runif(16), nrow=4), my_logical = c(runif(100) &gt; 0.5), my_letters = sample(letters))
+print(myList)</code></pre>
+<pre><code>## $my_matrix
+##             [,1]      [,2]      [,3]       [,4]
+## [1,] 0.366552833 0.2192296 0.3760487 0.05469748
+## [2,] 0.910028881 0.7927731 0.8423287 0.60228579
+## [3,] 0.411112519 0.8073683 0.4590184 0.32898420
+## [4,] 0.001993655 0.6527209 0.7911348 0.65027722
+## 
+## $my_logical
+##   [1] FALSE  TRUE FALSE  TRUE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE
+##  [13]  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE  TRUE FALSE
+##  [25] FALSE  TRUE  TRUE FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE  TRUE FALSE
+##  [37] FALSE  TRUE FALSE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE FALSE FALSE
+##  [49]  TRUE  TRUE FALSE  TRUE  TRUE FALSE  TRUE  TRUE FALSE  TRUE  TRUE FALSE
+##  [61] FALSE  TRUE  TRUE FALSE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE FALSE
+##  [73] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE  TRUE FALSE  TRUE  TRUE
+##  [85] FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+##  [97]  TRUE  TRUE FALSE  TRUE
+## 
+## $my_letters
+##  [1] &quot;o&quot; &quot;x&quot; &quot;f&quot; &quot;l&quot; &quot;m&quot; &quot;w&quot; &quot;y&quot; &quot;z&quot; &quot;s&quot; &quot;g&quot; &quot;a&quot; &quot;h&quot; &quot;r&quot; &quot;i&quot; &quot;t&quot; &quot;u&quot; &quot;n&quot; &quot;k&quot; &quot;j&quot;
+## [20] &quot;e&quot; &quot;v&quot; &quot;d&quot; &quot;q&quot; &quot;c&quot; &quot;p&quot; &quot;b&quot;</code></pre>
+<pre class="r"><code>myList2 &lt;- list(matrix2 = myList$my_matrix[2,2], logical2 = myList$my_logical[2], letters2 = myList$my_letters[2])
+typeof(myList2$matrix2)</code></pre>
+<pre><code>## [1] &quot;double&quot;</code></pre>
+<pre class="r"><code>typeof(myList2$logical2)</code></pre>
+<pre><code>## [1] &quot;logical&quot;</code></pre>
+<pre class="r"><code>typeof(myList2$letters2)</code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<pre class="r"><code>vector &lt;- c(myList2$matrix2, myList2$logical2, myList2$letters2)
+typeof(vector)</code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+</div>
+<div id="question-3" class="section level2">
+<h2>Question 3</h2>
+<pre class="r"><code>my_unifs = runif(26, min=0, max=10)
+my_letters = sample(LETTERS)
+df = data.frame(my_unifs, my_letters, stringsAsFactors = F)
+print(head(df))</code></pre>
+<pre><code>##    my_unifs my_letters
+## 1 5.0336796          J
+## 2 7.6019206          A
+## 3 3.6879187          Q
+## 4 0.9366828          O
+## 5 0.3278332          I
+## 6 9.1876311          D</code></pre>
+<pre class="r"><code>df[sample(nrow(df), 4), 1] &lt;- NA
+print(df)</code></pre>
+<pre><code>##     my_unifs my_letters
+## 1  5.0336796          J
+## 2  7.6019206          A
+## 3  3.6879187          Q
+## 4         NA          O
+## 5  0.3278332          I
+## 6         NA          D
+## 7         NA          E
+## 8  6.8983226          X
+## 9  8.9665929          P
+## 10 9.7591503          K
+## 11 5.0821412          Z
+## 12 7.6839486          R
+## 13 2.5676237          B
+## 14 4.7626199          U
+## 15 4.4345718          W
+## 16 9.7816849          V
+## 17 3.5708665          G
+## 18        NA          L
+## 19 0.7076369          F
+## 20 8.2265848          C
+## 21 4.2705039          T
+## 22 1.9046061          S
+## 23 1.3961872          M
+## 24 8.8243896          N
+## 25 9.8365099          Y
+## 26 2.1529648          H</code></pre>
+<pre class="r"><code>complete.cases(df)</code></pre>
+<pre><code>##  [1]  TRUE  TRUE  TRUE FALSE  TRUE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE
+## [13]  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+## [25]  TRUE  TRUE</code></pre>
+<pre class="r"><code>df &lt;- df[order(df$my_letters),]
+colMeans(df[1], na.rm = T)</code></pre>
+<pre><code>## my_unifs 
+## 5.339921</code></pre>
+<pre class="r"><code>names(df) &lt;- c(&quot;my_unifs&quot;, &quot;my_LETTERS&quot;)
+print(head(df))</code></pre>
+<pre><code>##     my_unifs my_LETTERS
+## 2  7.6019206          A
+## 13 2.5676237          B
+## 20 8.2265848          C
+## 6         NA          D
+## 7         NA          E
+## 19 0.7076369          F</code></pre>
 </div>
 
 

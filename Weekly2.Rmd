@@ -1,0 +1,36 @@
+---
+title: "Weekly Assignment 2"
+author: "Andy Atallah"
+date: "2023-01-19"
+output: html_document
+---
+## Question 1
+```{r}
+dfFunction <- function(mean1=NULL, mean2=NULL){
+  Type <- rep(c("Control", "Treatment"), each=25)
+  Value <- c(rnorm(25, mean=10, sd=1.5), rnorm(25, mean=45, sd=2))
+  return(data.frame(Type, Value, stringsAsFactors = F))
+}
+```
+## Question 2
+```{r}
+dfOutput <- dfFunction()
+print(head(dfFunction()))
+```
+
+## Question 3
+```{r}
+print(summary(aov(dfOutput$Value~dfOutput$Type, dfOutput))[[1]][1,5])
+```
+
+## Question 4
+```{r}
+aovFunction <- function(a=data.frame){
+  names(a) <- c("Var1", "Var2")
+  b <- summary(aov(a$Var2~a$Var1, a))
+  return(b[[1]][1,5])
+}
+
+aovFunction(dfOutput)
+```
+

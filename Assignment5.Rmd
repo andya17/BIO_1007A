@@ -1,0 +1,34 @@
+---
+title: "Assignment 5"
+author: "Andy Atallah"
+date: "2023-01-19"
+output: html_document
+---
+## Question 2
+```{r}
+myList <- list(my_matrix = matrix(data=runif(16), nrow=4), my_logical = c(runif(100) > 0.5), my_letters = sample(letters))
+print(myList)
+
+myList2 <- list(matrix2 = myList$my_matrix[2,2], logical2 = myList$my_logical[2], letters2 = myList$my_letters[2])
+typeof(myList2$matrix2)
+typeof(myList2$logical2)
+typeof(myList2$letters2)
+vector <- c(myList2$matrix2, myList2$logical2, myList2$letters2)
+typeof(vector)
+```
+## Question 3
+```{r}
+my_unifs = runif(26, min=0, max=10)
+my_letters = sample(LETTERS)
+df = data.frame(my_unifs, my_letters, stringsAsFactors = F)
+print(head(df))
+df[sample(nrow(df), 4), 1] <- NA
+print(df)
+complete.cases(df)
+
+df <- df[order(df$my_letters),]
+colMeans(df[1], na.rm = T)
+
+names(df) <- c("my_unifs", "my_LETTERS")
+print(head(df))
+```

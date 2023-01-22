@@ -26,9 +26,3 @@ mean(m[1,])
 sum(m[n_dims,])
 mean(m[n_dims,])
 ```
-
-## Question 2
-```{r}
-
-```
-
