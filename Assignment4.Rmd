@@ -13,9 +13,9 @@ print(n_dims)
 vn <- c(1, as.integer(seq(from = 2, to = n_dims^2)))
 print(vn)
 
-sample(vn)
+rm <- sample(vn)
 
-m <- matrix(vn, nrow=n_dims)
+m <- matrix(data=rm, nrow=n_dims)
 print(m)
 
 t(m)

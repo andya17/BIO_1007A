@@ -362,26 +362,26 @@ display: none;
 <pre class="r"><code>myList &lt;- list(my_matrix = matrix(data=runif(16), nrow=4), my_logical = c(runif(100) &gt; 0.5), my_letters = sample(letters))
 print(myList)</code></pre>
 <pre><code>## $my_matrix
-##             [,1]      [,2]      [,3]       [,4]
-## [1,] 0.366552833 0.2192296 0.3760487 0.05469748
-## [2,] 0.910028881 0.7927731 0.8423287 0.60228579
-## [3,] 0.411112519 0.8073683 0.4590184 0.32898420
-## [4,] 0.001993655 0.6527209 0.7911348 0.65027722
+##           [,1]      [,2]      [,3]      [,4]
+## [1,] 0.2303607 0.2382011 0.6159725 0.4725771
+## [2,] 0.7259218 0.8416526 0.8326082 0.1306695
+## [3,] 0.6728609 0.5957038 0.3264964 0.3882253
+## [4,] 0.7015270 0.8021475 0.3726727 0.7052363
 ## 
 ## $my_logical
-##   [1] FALSE  TRUE FALSE  TRUE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE
-##  [13]  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE  TRUE FALSE
-##  [25] FALSE  TRUE  TRUE FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE  TRUE FALSE
-##  [37] FALSE  TRUE FALSE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE FALSE FALSE
-##  [49]  TRUE  TRUE FALSE  TRUE  TRUE FALSE  TRUE  TRUE FALSE  TRUE  TRUE FALSE
-##  [61] FALSE  TRUE  TRUE FALSE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE FALSE
-##  [73] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE  TRUE FALSE  TRUE  TRUE
-##  [85] FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
-##  [97]  TRUE  TRUE FALSE  TRUE
+##   [1] FALSE  TRUE  TRUE FALSE FALSE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE
+##  [13]  TRUE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE FALSE
+##  [25]  TRUE FALSE FALSE  TRUE  TRUE FALSE  TRUE  TRUE FALSE FALSE  TRUE FALSE
+##  [37]  TRUE  TRUE  TRUE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE  TRUE
+##  [49] FALSE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE
+##  [61] FALSE  TRUE  TRUE FALSE FALSE  TRUE FALSE  TRUE  TRUE  TRUE FALSE FALSE
+##  [73] FALSE FALSE  TRUE FALSE FALSE  TRUE  TRUE FALSE FALSE  TRUE  TRUE  TRUE
+##  [85]  TRUE FALSE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
+##  [97] FALSE  TRUE FALSE FALSE
 ## 
 ## $my_letters
-##  [1] &quot;o&quot; &quot;x&quot; &quot;f&quot; &quot;l&quot; &quot;m&quot; &quot;w&quot; &quot;y&quot; &quot;z&quot; &quot;s&quot; &quot;g&quot; &quot;a&quot; &quot;h&quot; &quot;r&quot; &quot;i&quot; &quot;t&quot; &quot;u&quot; &quot;n&quot; &quot;k&quot; &quot;j&quot;
-## [20] &quot;e&quot; &quot;v&quot; &quot;d&quot; &quot;q&quot; &quot;c&quot; &quot;p&quot; &quot;b&quot;</code></pre>
+##  [1] &quot;m&quot; &quot;u&quot; &quot;s&quot; &quot;o&quot; &quot;d&quot; &quot;y&quot; &quot;l&quot; &quot;p&quot; &quot;a&quot; &quot;t&quot; &quot;f&quot; &quot;z&quot; &quot;q&quot; &quot;i&quot; &quot;x&quot; &quot;c&quot; &quot;v&quot; &quot;b&quot; &quot;r&quot;
+## [20] &quot;g&quot; &quot;k&quot; &quot;h&quot; &quot;n&quot; &quot;e&quot; &quot;w&quot; &quot;j&quot;</code></pre>
 <pre class="r"><code>myList2 &lt;- list(matrix2 = myList$my_matrix[2,2], logical2 = myList$my_logical[2], letters2 = myList$my_letters[2])
 typeof(myList2$matrix2)</code></pre>
 <pre><code>## [1] &quot;double&quot;</code></pre>
@@ -399,59 +399,57 @@ typeof(vector)</code></pre>
 my_letters = sample(LETTERS)
 df = data.frame(my_unifs, my_letters, stringsAsFactors = F)
 print(head(df))</code></pre>
-<pre><code>##    my_unifs my_letters
-## 1 5.0336796          J
-## 2 7.6019206          A
-## 3 3.6879187          Q
-## 4 0.9366828          O
-## 5 0.3278332          I
-## 6 9.1876311          D</code></pre>
+<pre><code>##   my_unifs my_letters
+## 1 7.801451          Y
+## 2 4.870838          O
+## 3 4.444923          I
+## 4 8.959185          A
+## 5 4.771832          D
+## 6 7.249609          Q</code></pre>
 <pre class="r"><code>df[sample(nrow(df), 4), 1] &lt;- NA
 print(df)</code></pre>
 <pre><code>##     my_unifs my_letters
-## 1  5.0336796          J
-## 2  7.6019206          A
-## 3  3.6879187          Q
-## 4         NA          O
-## 5  0.3278332          I
-## 6         NA          D
-## 7         NA          E
-## 8  6.8983226          X
-## 9  8.9665929          P
-## 10 9.7591503          K
-## 11 5.0821412          Z
-## 12 7.6839486          R
-## 13 2.5676237          B
-## 14 4.7626199          U
-## 15 4.4345718          W
-## 16 9.7816849          V
-## 17 3.5708665          G
-## 18        NA          L
-## 19 0.7076369          F
-## 20 8.2265848          C
-## 21 4.2705039          T
-## 22 1.9046061          S
-## 23 1.3961872          M
-## 24 8.8243896          N
-## 25 9.8365099          Y
-## 26 2.1529648          H</code></pre>
-<pre class="r"><code>complete.cases(df)</code></pre>
-<pre><code>##  [1]  TRUE  TRUE  TRUE FALSE  TRUE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE
-## [13]  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
-## [25]  TRUE  TRUE</code></pre>
+## 1  7.8014514          Y
+## 2  4.8708383          O
+## 3  4.4449230          I
+## 4  8.9591852          A
+## 5  4.7718320          D
+## 6  7.2496088          Q
+## 7  4.3636200          H
+## 8         NA          M
+## 9  3.1735945          K
+## 10        NA          B
+## 11 5.3631048          P
+## 12 2.9284213          C
+## 13 3.4048573          E
+## 14        NA          X
+## 15 9.6667617          N
+## 16 6.1700453          T
+## 17 8.0440483          U
+## 18 8.6351159          S
+## 19 1.3092513          L
+## 20 7.4278134          J
+## 21 0.7769515          G
+## 22 3.3362035          Z
+## 23 7.3708020          R
+## 24 6.4460612          V
+## 25 7.7284530          F
+## 26        NA          W</code></pre>
+<pre class="r"><code>which(!complete.cases(df))</code></pre>
+<pre><code>## [1]  8 10 14 26</code></pre>
 <pre class="r"><code>df &lt;- df[order(df$my_letters),]
 colMeans(df[1], na.rm = T)</code></pre>
 <pre><code>## my_unifs 
-## 5.339921</code></pre>
+## 5.647407</code></pre>
 <pre class="r"><code>names(df) &lt;- c(&quot;my_unifs&quot;, &quot;my_LETTERS&quot;)
 print(head(df))</code></pre>
-<pre><code>##     my_unifs my_LETTERS
-## 2  7.6019206          A
-## 13 2.5676237          B
-## 20 8.2265848          C
-## 6         NA          D
-## 7         NA          E
-## 19 0.7076369          F</code></pre>
+<pre><code>##    my_unifs my_LETTERS
+## 4  8.959185          A
+## 10       NA          B
+## 12 2.928421          C
+## 5  4.771832          D
+## 13 3.404857          E
+## 25 7.728453          F</code></pre>
 </div>
 
 

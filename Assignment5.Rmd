@@ -24,7 +24,7 @@ df = data.frame(my_unifs, my_letters, stringsAsFactors = F)
 print(head(df))
 df[sample(nrow(df), 4), 1] <- NA
 print(df)
-complete.cases(df)
+which(!complete.cases(df))
 
 df <- df[order(df$my_letters),]
 colMeans(df[1], na.rm = T)
