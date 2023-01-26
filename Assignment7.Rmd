@@ -1,0 +1,62 @@
+---
+title: "Assignment 7"
+author: "Andy Atallah"
+date: "2023-01-24"
+output: html_document
+---
+## Question 1
+```{r}
+library(tidyverse)
+library(dplyr)
+data("starwars")
+
+swSpecies <- starwars %>% 
+  group_by(species) %>%
+  summarize(TotalNumber=n()) %>%
+  filter(TotalNumber > 1)
+print(swSpecies)
+
+swSpecies2 <- starwars %>%
+  filter(species %in% swSpecies$species) %>%
+  select(name:species)
+```
+## Question 2
+```{r}
+swClean <- swSpecies2[complete.cases(swSpecies2[,2]),]
+anyNA(swClean[,2])
+
+swClean2 <- swClean %>%
+  group_by(species) %>%
+  summarize(meanHeight=mean(height), medianHeight=median(height), stdevHeight=sd(height), TotalNumber=n())
+```
+## Question 3
+```{r}
+library(viridis)
+library(ggplot2)
+library(ggthemes)
+library(patchwork)
+cols <- viridis(9, option = "plasma")
+
+p1 <- ggplot(data=swClean, aes(x=species, y=height, fill=species)) +
+  geom_boxplot() +
+  theme_minimal() + 
+  scale_fill_manual(values=cols) +
+  xlab("Species") + ylab("Height (cm)") +
+  annotate("text", x=max(swClean2$species), y=max(swClean2$medianHeight), label="p=1.2E-0.5") +
+  geom_point(aes(colour=factor(gender)))
+print(p1)
+```
+## Question 4
+```{r}
+p2 <- ggplot(data=swClean, aes(x=mass, y=height, fill=mass), show.legend = FALSE) +
+  geom_point(size=3, shape=20, color="blue", fill="black") +
+  theme(legend.position="none") +
+  xlab("Mass (kg)") + 
+  ylab("Height (cm)") +
+  geom_point(aes(colour=factor(mass)))
+
+p1+p2
+```
+
+
+
