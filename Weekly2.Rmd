@@ -33,4 +33,8 @@ aovFunction <- function(a=data.frame){
 
 aovFunction(dfOutput)
 ```
+## Test
+```{r}
+dfFunction(mean1=20, mean2=30)
+```
 

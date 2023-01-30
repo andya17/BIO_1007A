@@ -1,0 +1,48 @@
+---
+title: "Weekly 3"
+author: "Andy Atallah"
+date: "2023-01-26"
+output: html_document
+---
+### I will aim to reconstruct this figure (1B) in [Drolet et al. (2015)](https://www.jstor.org/stable/pdf/24432314.pdf?refreqid=excelsior%3A9c46a2d9bd6552f69aa40f3895a2613b&ab_segments=&origin=&acceptTC=1). 
+![](/Users/terry/Desktop/Drolet.jpg)
+
+
+```{r}
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
+library(ggthemes)
+
+expert = read.table(file="Data/drolet.csv", header=T, sep=",")
+
+expert$Outcome <- as.character(expert$Outcome)
+expert$Outcome[which(expert$Outcome=="0")] <- "Non-eradication"
+expert$Outcome[which(expert$Outcome=="1")] <- "Eradication"
+                    
+expertdata = expert %>%
+  select(Prediction, Outcome) %>%
+  group_by(Prediction, Outcome) %>%
+  summarize(TotalNumber=n())
+
+expertdata$Outcome <-factor(expertdata$Outcome, levels=c("Non-eradication", "Eradication"))
+
+expertdata$Prediction <- factor(expertdata$Prediction, levels=c("Very unlikely", "Unlikely", "Likely", "Very likely"))
+
+p <- ggplot(data=expertdata, 
+       aes(x=expertdata$Prediction, y=expertdata$TotalNumber, fill=factor(Outcome))) +   geom_bar(position="dodge", stat="identity", width=0.5, color="black") +
+  ylim(0,60) +
+  ylab("Count") +
+  xlab("") +
+  scale_y_continuous(breaks = c(0,10,20,30,40,50,60), limits=c(0,60)) +
+  scale_x_discrete(labels=c("Very unlikely", "Unlikely", "Likely", "Very likely")) +
+  theme_few() + scale_fill_grey(start=0.99, end=0.7) +
+  theme(legend.position="top", legend.title= element_blank()) +
+  theme(axis.text.x = element_text(colour="black", angle = 45, vjust = 1, hjust=1)) +
+  theme(axis.text.y = element_text(colour="black")) + 
+  theme(legend.position = c(.85, .85)) +
+  guides(fill=guide_legend(nrow=2,byrow=TRUE)) 
+
+print(p)
+```
+
