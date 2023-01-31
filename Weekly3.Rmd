@@ -16,10 +16,12 @@ library(ggthemes)
 
 expert = read.table(file="Data/drolet.csv", header=T, sep=",")
 
+# I changed the names of the columns in the .xlsx file that was downloaded so they would be less unwieldy; they showed as multiple words with dots between them when I imported them previously. I would like to convert a column that had 0s and 1s into the description of the variable, which had been included in the column title by the researchers. 
 expert$Outcome <- as.character(expert$Outcome)
 expert$Outcome[which(expert$Outcome=="0")] <- "Non-eradication"
 expert$Outcome[which(expert$Outcome=="1")] <- "Eradication"
-                    
+
+# I am grouping by two variables so that they both show up in the summary.            
 expertdata = expert %>%
   select(Prediction, Outcome) %>%
   group_by(Prediction, Outcome) %>%
@@ -31,7 +33,6 @@ expertdata$Prediction <- factor(expertdata$Prediction, levels=c("Very unlikely",
 
 p <- ggplot(data=expertdata, 
        aes(x=expertdata$Prediction, y=expertdata$TotalNumber, fill=factor(Outcome))) +   geom_bar(position="dodge", stat="identity", width=0.5, color="black") +
-  ylim(0,60) +
   ylab("Count") +
   xlab("") +
   scale_y_continuous(breaks = c(0,10,20,30,40,50,60), limits=c(0,60)) +
@@ -44,5 +45,8 @@ p <- ggplot(data=expertdata,
   guides(fill=guide_legend(nrow=2,byrow=TRUE)) 
 
 print(p)
+
+# Neither annotate() or geom_text() seemed to work with putting the "B" in the top left corner. I tried annotating it, but it accepted an x value, so I was forced to put in "Very unlikely." This made the B appear far more to the right than I wanted.
+# Additionally, I could not find a legend key shape that matched what the researchers had, so I left that argument out.
 ```
 

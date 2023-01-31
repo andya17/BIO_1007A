@@ -1,0 +1,33 @@
+---
+title: "Weekly Assignment 4"
+author: "Andy Atallah"
+date: "2023-01-30"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+```{r}
+library(ggplot2)
+library(tidyverse)
+
+# Holidays taken from https://www.holidayinsights.com/everyday.htm. 
+holidays <- c(9, 11, 10, 13, 11, 5, 5, 8, 10, 12, 14, 11)
+months <- c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
+
+yearhalf <- c("First half of year", "Second half of year")
+holidayhalf <- c(holidays[1:6], holidays[7:12])
+
+holidayframe <- data.frame(yearhalf, holidayhalf)
+
+holidaymodel <- aov(holidayhalf~yearhalf, data=holidayframe)
+print(summary(holidaymodel)[[1]][1,5]) #p-value
+
+holidayplot <- ggplot(data=holidayframe, aes(x=yearhalf, y=holidayhalf, fill=yearhalf)) + 
+  geom_boxplot() +
+  scale_fill_grey(start=0.8, end=0.5) +
+  theme(legend.position="top", legend.title= element_blank()) +
+   ylab("Number of holidays/month") +
+   xlab("Part of year")
+
+print(holidayplot)
+```

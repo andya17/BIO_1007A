@@ -1,0 +1,36 @@
+---
+title: "Final Project"
+author: "Andy Atallah"
+date: "2023-02-02"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+```{r}
+library(calendR)
+
+yearCal <- calendR(year=2023, 
+        mbg.col="blue",
+        months.col="white",
+        start="S",
+        lty=1,
+        days.col="lightblue",
+        weeknames=c("Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"))
+
+dates <- rep(NA, 28)
+dates[c(1:3)] <- "J-term"
+dates[c(4:13)] <- "Winter break"
+dates[c(14:28)] <- "Spring semester"
+
+february <- calendR(year=2023, month=2,
+                    title="February 2023",
+                    weeknames=c("Sun", "Mon", "Tues", "Weds", "Thur", "Fri", "Sat"),
+                    start="M",
+                    lty=1,
+                    special.days=dates,
+                    special.col=c("lightyellow", "lightyellow", "lightblue"),
+                    legend.pos="bottom")
+
+calendars()
+```
+

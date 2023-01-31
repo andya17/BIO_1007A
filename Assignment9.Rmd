@@ -1,0 +1,61 @@
+---
+title: "Assignment 9"
+author: "Andy Atallah"
+date: "2023-01-30"
+output: html_document
+---
+# Question 1
+```{r}
+zeroVec <- as.integer(c(runif(50) > 0.5))
+counter <- 0
+
+for(i in 1:length(zeroVec)){
+  if(zeroVec[i]==0){
+    counter <- counter + 1
+    print(counter)
+  }
+}
+```
+#Question 2
+```{r}
+matrixF <- function(row=3, col=3){
+  mat <- matrix(nrow=row, ncol=col)
+  for(i in 1:nrow(mat)){
+    for(j in 1:ncol(mat)){
+      mat[i,j] <- 1 * i * j
+    }
+  }
+  return(mat)
+}
+
+matrixF(row=4, col=4)
+```
+# Question 3
+```{r}
+library(tidyverse)
+
+# Updated function from Assignment 8 with correct arguments.
+dfFunction <- function(mean1=10, mean2=45){
+  Type <- rep(c("Control", "Treatment"), each=25)
+  Value <- c(rnorm(25, mean=mean1, sd=1.5), rnorm(25, mean=mean2, sd=2))
+  dFrame <- data.frame(Type, Value, stringsAsFactors = F)
+  return(dFrame)
+}
+
+# Second function from Weekly Assignment 2.
+aovFunction <- function(a=data.frame){
+  names(a) <- c("Var1", "Var2")
+  b <- summary(aov(a$Var2~a$Var1, a))
+  return(b[[1]][1,5])
+}
+
+colOne <- c(1:100)
+colTwo <- c(1:100)
+
+for(i in 1:100){
+colTwo[i] <- aovFunction(dfFunction())
+}
+
+newframe <- data.frame(colOne, colTwo)
+print(newframe)
+```
