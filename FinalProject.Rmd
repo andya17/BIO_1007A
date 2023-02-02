@@ -67,7 +67,7 @@ title:  "[your title]"
 date:   2023-02-01
 ---
 ```
-4. For the posts I added, I used what the theme guide [calls a Jekyll Helper](https://mmistakes.github.io/minimal-mistakes/docs/helpers/).
+4. For the posts I added, I used what the theme guide [calls a Jekyll Helper](https://mmistakes.github.io/minimal-mistakes/docs/helpers/). The formatting is found below the text "Using the figure include like so:". 
 * I added a picture of the content I wanted to show in the post as a .png file to the "assets" folder.
 * In the post, I used the Jekyll Helper to add a picture in-line with a caption. 
 * I referred to the path of the image by putting /assets/ before the file name, and I also used the formatting which is present on the theme guide under "Figure". This allowed a picture to be inserted in-line with a caption underneath.
@@ -95,7 +95,8 @@ main:
    - title: "Tree Photos"
      url: /treephotos/
 ```
-4. Pages you add in this way should show up on the navigation bar on the top of your website.
+4. For my page, I used the same method of adding pictures with captions as I did for posts. I added line breaks by adding several spaces after a phrase and then pressing return. I was able to do this within the formatting of the [Jekyll Helper](https://mmistakes.github.io/minimal-mistakes/docs/helpers/).
+5. Pages you add in this way should show up on the navigation bar on the top of your website.
 
 # Using the calendR package
 calendR is a package with only one function, calendR. I will show the code for creating the three calendars shown in the posts I made. [This page may be a good reference.](https://github.com/R-CoderDotCom/calendR) First, install the package like usual.
@@ -192,7 +193,7 @@ academicYear <- calendR(
         legend.pos = "top", # Add the legend to the top of the output image.
         pdf = TRUE, # You can also create a PDF directly in your repository folder.
         orientation="portrait", # Format the output so that it is taller.
-        doc_name = "calendR-year-2023-final") # This will be the name of the PDF that shows up in the folder. You can't use the same name if you've already knitted before and a PDF was created.
+        doc_name = "calendR-full-2023-academic") # This will be the name of the PDF that shows up in the folder. You can't use the same name if you've already knitted before and a PDF was created. This can be cumbersome if you knit many times, so make sure to change the filename.
 
 # This does not show up well when knitting. Check the PDF for a much better view of the calendar!
 ```
