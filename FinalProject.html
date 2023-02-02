@@ -509,13 +509,10 @@ a Jekyll Helper</a>.</li>
 .png file to the “assets” folder.</li>
 <li>In the post, I used the Jekyll Helper to add a picture in-line with
 a caption.</li>
-</ul>
-<pre><code>{% include figure image_path=&quot;/assets/feb23calendar.png&quot; alt=&quot;This is a February 2023 calendar.&quot; caption=&quot;This is a calendar created using the package calendR. The package offers the ability to create monthly and yearly calendars.&quot; %}</code></pre>
-<ul>
 <li>I referred to the path of the image by putting /assets/ before the
 file name, and I also used the formatting which is present on the theme
-guide. This allowed a picture to be inserted in-line with a caption
-underneath.</li>
+guide under “Figure”. This allowed a picture to be inserted in-line with
+a caption underneath.</li>
 </ul>
 <ol start="5" style="list-style-type: decimal">
 <li>Post files are titled in a certain way, with a YYYY-MM-DD format
@@ -535,7 +532,8 @@ should add the path of what you want the URL of the page to be.</li>
 title:  &quot;Tree Photos&quot;
 permalink: /treephotos/
 author_profile: true
-comments: true</code></pre>
+comments: true
+---</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>You should then click on the “_data” folder and open
 “navigation.yml”. Inside, you need to create a new title/URL set with
@@ -653,7 +651,7 @@ academicYear &lt;- calendR(
         legend.pos = &quot;top&quot;, # Add the legend to the top of the output image.
         pdf = TRUE, # You can also create a PDF directly in your repository folder.
         orientation=&quot;portrait&quot;, # Format the output so that it is taller.
-        doc_name = &quot;calendR-year-2023&quot;) # This will be the name of the PDF that shows up in the folder. You can&#39;t use the same name if you&#39;ve already knitted before and a PDF was created.
+        doc_name = &quot;calendR-year-2023-final&quot;) # This will be the name of the PDF that shows up in the folder. You can&#39;t use the same name if you&#39;ve already knitted before and a PDF was created.
 
 # This does not show up well when knitting. Check the PDF for a much better view of the calendar!</code></pre>
 </div>
