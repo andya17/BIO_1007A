@@ -73,7 +73,7 @@ date:   2023-02-01
 ```
 {% include figure image_path="/assets/feb23calendar.png" alt="This is a February 2023 calendar." caption="This is a calendar created using the package calendR. The package offers the ability to create monthly and yearly calendars." %}
 ```
-* I referred to the path of the image by putting /assets/ before the file name, and I also used the formatting of {% %} which is present on the theme guide. This allowed a picture to be inserted in-line with a caption underneath.
+* I referred to the path of the image by putting /assets/ before the file name, and I also used the formatting which is present on the theme guide. This allowed a picture to be inserted in-line with a caption underneath.
 5. Post files are titled in a certain way, with a YYYY-MM-DD format before a title. My first title was "2023-02-01-february-calendar.md". They are then placed into the _posts folder you created.
 
 ### Creating a page
