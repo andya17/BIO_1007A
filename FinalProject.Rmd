@@ -131,36 +131,6 @@ print(february23)
 ```
 
 
-For the February academic calendar post, I used the feature of adding text to specific days. 
-
-```{r warning=FALSE}
-feb23academic <- calendR(
-                    year=2023, # Specify a year and month.
-                    month=2,
-                    title="February 2023 Academic Calendar", 
-                    title.col="white", # Change the color of the title.
-                    weeknames=c("M", "T", "W", "R", "F", "Sa", "Su"), # You can change teh day abbreviations to be shorter.
-                    start="M", # I can start on Monday as I have put Monday first in my weeknames list.
-                    lty=1, # This adds a line between days on the calendar.
-                    col="black", # This changes the line color (added with lty) to black.
-                    days.col="black", # This changes the color of the day numbers on the calendar.
-                    weeknames.col="white", # This changes the color of the day abbreviations above the days.
-                    special.days="weekend", # You have the choice of specifying "weekend" to automatically give all Saturdays and Sundays a color instead of using the vector method I used last time.
-                    special.col="skyblue", # Weekend days will be sky blue.
-                    text=c("BIOL 1007", "ECSC 350\nBIOL 211", "MUSC 101\nGEOG 310\nLab", "ECSC 350\nBIOL 211\nLab", "MUSC 101\nGEOG 310"), # Specify text that you want to show on the days. This only works for monthly calendars. Use \n to show multiple things, in this case classes, per day.
-                    text.pos=c(c(2), c(13,17,20,24,27), c(14,21,28), c(15,22), c(16,23)), # I specified five options for text in the above argument. This means that I must add five days or sets of days, one corresponding to each string of text. For example, "BIOL 1007" only needs to appear on the 2nd of February, but I have the schedule specified by the second option on five days total. This will require using c() inside c().
-                    text.size=2.75, # You can knit and adjust text size to see if your text fits within the confines of the days.
-                    text.col="black", # This changes the color of the text added on days.
-                    bg.col="midnightblue", # This adds a full background of midnight blue to the final product.
-                    font.family="serif", # This changes the font family.
-                    font.style="bold"
-                    )
-
-print(feb23academic)
-```
-
-
-
 For the 2023 full year academic calendar, I used a similar method as the first calendar. Installing the lubridate package may assist with yearly calendars, for you need to specify the day of the year for a vector; previously, we just used the day of the month of February.
 
 ```{r message=FALSE, warning=FALSE}
@@ -193,7 +163,7 @@ academicYear <- calendR(
         legend.pos = "top", # Add the legend to the top of the output image.
         pdf = TRUE, # You can also create a PDF directly in your repository folder.
         orientation="portrait", # Format the output so that it is taller.
-        doc_name = "calendR-full-2023-academic-pdf") # This will be the name of the PDF that shows up in the folder. You can't use the same name if you've already knitted before and a PDF was created. This can be cumbersome if you knit many times, so make sure to change the filename.
+        doc_name = "final-calendR-pdf") # This will be the name of the PDF that shows up in the folder. You can't use the same name if you've already knitted before and a PDF was created. This can be cumbersome if you knit many times, so make sure to change the filename.
 
 # This does not show up well when knitting. Check the PDF for a much better view of the calendar!
 ```
