@@ -36,17 +36,15 @@ p <- ggplot(data=expertdata,
   ylab("Count") +
   xlab("") +
   scale_y_continuous(breaks = c(0,10,20,30,40,50,60), limits=c(0,60)) +
-  scale_x_discrete(labels=c("Very unlikely", "Unlikely", "Likely", "Very likely")) +
+  scale_x_discrete(labels=c("Very \nunlikely", "Unlikely", "Likely", "Very likely")) +
   theme_few() + scale_fill_grey(start=0.99, end=0.7) +
   theme(legend.position="top", legend.title= element_blank()) +
   theme(axis.text.x = element_text(colour="black", angle = 45, vjust = 1, hjust=1)) +
   theme(axis.text.y = element_text(colour="black")) + 
   theme(legend.position = c(.85, .85)) +
-  guides(fill=guide_legend(nrow=2,byrow=TRUE)) 
+  guides(fill=guide_legend(nrow=2,byrow=TRUE)) +
+  annotate("text", x=0.5, y=60, label="B")
 
 print(p)
-
-# Neither annotate() or geom_text() seemed to work with putting the "B" in the top left corner. I tried annotating it, but it accepted an x value, so I was forced to put in "Very unlikely." This made the B appear far more to the right than I wanted.
-# Additionally, I could not find a legend key shape that matched what the researchers had, so I left that argument out.
 ```
 

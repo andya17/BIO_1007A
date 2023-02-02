@@ -1,36 +1,201 @@
 ---
-title: "Final Project"
+title: "Final Project Guide"
 author: "Andy Atallah"
 date: "2023-02-02"
 output: html_document
 editor_options: 
   chunk_output_type: console
 ---
-```{r}
+# Description
+I created a personal website using GitHub and a Jekyll theme. I added a theme skin, posts, and a page to the navigation bar. The content in the posts was created using the package calendR, and I will also explain the steps needed to create the calendars shown on the website. I chose this format because I was interested in creating a website and also wanted to showcase a small package that may not have been enough on its own. 
+
+# Creating the personal website
+I followed the initial steps shown on the [page by Professor Ash](https://lvash.github.io/BIOL1007A/GitHub-website-steps.html), but I made another RStudio project for the purposes of the final assignment. I have a Mac computer, so the steps may not be the same for those with other computers.
+
+### Setting Up
+
+1. Create a GitHub repository called "[your username].github.io".   
+2. Create a new R project.    
+3. Choose "Version Control" > "Git", paste the URL of your new repository into the first box, and copy the exact name into the second box.    
+4. Go to the [GitHub page of the "minimal mistakes" Jekyll theme](https://github.com/mmistakes/minimal-mistakes) and click on "Code" > "Download ZIP".   
+5. Unzip the folder, click to view the contents, and drag the contents into the folder on your desktop that corresponds to the GitHub repository you created. Mine was a folder called "andya17.github.io".
+
+### Theme Customization
+The website for the Jekyll theme I used has many tips available [here](https://mmistakes.github.io/minimal-mistakes/docs/configuration/).
+
+1. The page above includes that you can delete the entire sub-folder called "docs". I would recommend doing this immediately - this folder has the potential to be confusing, for changes to posts or pages you make in this folder will not affect your website. It seems to be a collection of sample posts and pages.
+2. Go to the _config.yml file outside of the docs folder. The page above has some instructions for each part of this long file, but you do not need to edit all of it to get a functional website. I did the following:
+* On "minimal_mistakes_skin" line: changed to "sunrise".  
+* On "title" line: changed to "Andy's Personal Site".  
+* On "name" line: changed to my name.  
+* On "description" line: changed to ""A personal website for the BIOL1007 final project."     
+* On "url" line: changed to the URL of the page linked to the repository. This was called "andya17.github.io" for me, which was the name of the repository as well.      
+* On "repository" line: changed to <GitHub username>/<repository name>; for me, this was "andya17/andya17.github.io".      
+* [Scroll down a lot further] Under #Site Author:   
+  + On "name" line: changed to my name.   
+  + On "bio" line: added a string that goes underneath your name on the side of the site.   
+  + On "location" line: added location.     
+  + Under "links" line: keep the websites that you want to show.     
+* Under #Site Footer: keep the websites that you want to show.   
+* [Scroll down] Under # Defaults:
+  + I added the following text for pages based on the suggestion of the theme guide. 
+  ```
+  defaults:
+  # _pages
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: single
+      author_profile: true
+  ```
+* You can now commit and push the changes using Terminal.
+
+### Checking commits
+* You can check whether an edit resulted in any change by going to your repository URL > Settings > Pages > Visit Site. 
+* Changes may take longer to be finalized than they did for the class assignments, and you can see this on the repository page on GitHub. 
+  + On the line below the green Code button, changes in progress will show an orange/yellow dot, while a change that went through will show a green check mark.
+  + If an error occurs, you will see a red X mark. GitHub might also send an email if you have it enabled. To get a sense of what went wrong, you can click on the X and check the "Details". GitHub will show a long stretch of code which may contain an error message including which line in which file produced the error. This is helpful if you made multiple changes, like you might have for the _config.yml file.
+
+### Creating posts
+1. You may see that there is [a page on the theme guide](https://mmistakes.github.io/minimal-mistakes/docs/posts/) about posts. You should first create a folder called "_posts" (without the quotation marks) and place it within your repository folder. This may be confusing if you haven't deleted the docs folder, since that folder already has a folder called _posts inside. I would recommend deleting the docs folder and working outside of it for creating posts.
+2. Posts and pages use a different markdown language than R Markdown. I use a Mac and found it easiest to follow the recommendation to download the free version of [BBEdit](https://www.barebones.com/products/bbedit/download.html ) so that I could save files with the ".md" extension.
+3. In BBEdit, I set the front matter of the first post file. Similar to R Markdown, .md files need text formatted in a certain way before any content. It can be as simple as the following, since the very bottom section of _config.yml (# Defaults) should have had a section specifying the default layout of the page for all posts.
+```
+---
+title:  "[your title]"
+date:   2023-02-01
+---
+```
+4. For the posts I added, I used what the theme guide [calls a Jekyll Helper](https://mmistakes.github.io/minimal-mistakes/docs/helpers/).
+* I added a picture of the content I wanted to show in the post as a .png file to the "assets" folder.
+* In the post, I used the Jekyll Helper to add a picture in-line with a caption. 
+```
+{% include figure image_path="/assets/feb23calendar.png" alt="This is a February 2023 calendar." caption="This is a calendar created using the package calendR. The package offers the ability to create monthly and yearly calendars." %}
+```
+* I referred to the path of the image by putting /assets/ before the file name, and I also used the formatting of {% %} which is present on the theme guide. This allowed a picture to be inserted in-line with a caption underneath.
+5. Post files are titled in a certain way, with a YYYY-MM-DD format before a title. My first title was "2023-02-01-february-calendar.md". They are then placed into the _posts folder you created.
+
+### Creating a page
+1. You will need to create a folder in your repository folder called "_pages" (without the quotation marks). 
+2. Pages require the addition of a "permalink" to the front matter. You should add the path of what you want the URL of the page to be. 
+```
+---
+title:  "Tree Photos"
+permalink: /treephotos/
+author_profile: true
+comments: true
+```
+3. You should then click on the "_data" folder and open "navigation.yml". Inside, you need to create a new title/URL set with the same URL as the path you put in the page front matter. I left in some of the commented title/URL sets that the file came with, but you can see that the title "Tree Photos" and the URL /treephotos/ are uncommented.
+```
+# main links
+main:
+  # - title: "Quick-Start Guide"
+  #  url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
+  # - title: "About"
+  #   url: https://mmistakes.github.io/minimal-mistakes/about/
+   - title: "Tree Photos"
+     url: /treephotos/
+```
+4. Pages you add in this way should show up on the navigation bar on the top of your website.
+
+# Using the calendR package
+calendR is a package with only one function, calendR. I will show the code for creating the three calendars shown in the posts I made. [This page may be a good reference.](https://github.com/R-CoderDotCom/calendR) First, install the package like usual.
+
+
+```{r warning=FALSE}
+
+# Load the library.
 library(calendR)
 
-yearCal <- calendR(year=2023, 
-        mbg.col="blue",
-        months.col="white",
-        start="S",
-        lty=1,
-        days.col="lightblue",
-        weeknames=c("Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"))
+# I want to make a calendar for February 2023, so I create a vector with one NA value for each day.
+datesFeb <- rep(NA, 28)
+# Values 1 and 2 of the vector will be "J-term".
+datesFeb[c(1:2)] <- "J-term"
+# Values 3 to 12 of the vector will be "February break".
+datesFeb[c(3:12)] <- "February break"
+datesFeb[c(13:28)] <- "Spring semester"
 
-dates <- rep(NA, 28)
-dates[c(1:3)] <- "J-term"
-dates[c(4:13)] <- "Winter break"
-dates[c(14:28)] <- "Spring semester"
+# Create a variable and assign the calendR function.
+february23 <- calendR(
+                    year=2023, #S tart with the year.
+                    month=2, # Add the month for a monthly calendar.
+                    title="February 2023", # Add a title to be displayed above the graph.
+                    weeknames=c("Mon", "Tues", "Weds", "Thur", "Fri", "Sat", "Sun"), # Add whatever abbreviations for the names of days that you wish.
+                    start="M", # This starts the week on Monday on the calendar. Make sure you put Monday (or Mon, or M) first in the weeknames vector if you do this.
+                    lty=1, # This adds lines between each day.
+                    special.days=datesFeb, # Special days can be assigned different colors. Refer back to the 28-day vector created for February above.
+                    special.col=c("lightgreen", "lightyellow", "lightblue"), # I have a vector in which I have assigned three different periods - J-term, February break, and Spring semester. I therefore need to specify three colors using c(). The order of the colors will affect the periods of time alphabetically -- lightgreen is applied to the days of February 2023 to which I assigned the word "February break" because it is alphabetically first out of the three.
+                    legend.pos="bottom") # This will create a legend for the three periods of February that I assigned different colors.
 
-february <- calendR(year=2023, month=2,
-                    title="February 2023",
-                    weeknames=c("Sun", "Mon", "Tues", "Weds", "Thur", "Fri", "Sat"),
-                    start="M",
-                    lty=1,
-                    special.days=dates,
-                    special.col=c("lightyellow", "lightyellow", "lightblue"),
-                    legend.pos="bottom")
+print(february23)
+```
 
-calendars()
+
+For the February academic calendar post, I used the feature of adding text to specific days. 
+
+```{r warning=FALSE}
+feb23academic <- calendR(
+                    year=2023, # Specify a year and month.
+                    month=2,
+                    title="February 2023 Academic Calendar", 
+                    title.col="white", # Change the color of the title.
+                    weeknames=c("M", "T", "W", "R", "F", "Sa", "Su"), # You can change teh day abbreviations to be shorter.
+                    start="M", # I can start on Monday as I have put Monday first in my weeknames list.
+                    lty=1, # This adds a line between days on the calendar.
+                    col="black", # This changes the line color (added with lty) to black.
+                    days.col="black", # This changes the color of the day numbers on the calendar.
+                    weeknames.col="white", # This changes the color of the day abbreviations above the days.
+                    special.days="weekend", # You have the choice of specifying "weekend" to automatically give all Saturdays and Sundays a color instead of using the vector method I used last time.
+                    special.col="skyblue", # Weekend days will be sky blue.
+                    text=c("BIOL 1007", "ECSC 350\nBIOL 211", "MUSC 101\nGEOG 310\nLab", "ECSC 350\nBIOL 211\nLab", "MUSC 101\nGEOG 310"), # Specify text that you want to show on the days. This only works for monthly calendars. Use \n to show multiple things, in this case classes, per day.
+                    text.pos=c(c(2), c(13,17,20,24,27), c(14,21,28), c(15,22), c(16,23)), # I specified five options for text in the above argument. This means that I must add five days or sets of days, one corresponding to each string of text. For example, "BIOL 1007" only needs to appear on the 2nd of February, but I have the schedule specified by the second option on five days total. This will require using c() inside c().
+                    text.size=2.75, # You can knit and adjust text size to see if your text fits within the confines of the days.
+                    text.col="black", # This changes the color of the text added on days.
+                    bg.col="midnightblue", # This adds a full background of midnight blue to the final product.
+                    font.family="serif", # This changes the font family.
+                    font.style="bold"
+                    )
+
+print(feb23academic)
+```
+
+
+
+For the 2023 full year academic calendar, I used a similar method as the first calendar. Installing the lubridate package may assist with yearly calendars, for you need to specify the day of the year for a vector; previously, we just used the day of the month of February.
+
+```{r message=FALSE, warning=FALSE}
+
+library(calendR)
+library(lubridate)
+
+yday("2023-02-02") # yday() is a lubridate function. This helped me to know what day of the year corresponded to a specific date. I used the output values to help with assigning periods of the year below.
+yday("2023-02-13")
+yday("2023-03-17")
+yday("2023-03-27") 
+yday("2023-05-19")
+yday("2023-09-11")
+yday("2023-12-15")
+
+academicDates <- rep(NA, 365) # There should be 365 possible spaces for special days, since we are dealing with the whole year.
+academicDates[c(1:4, 350:365)] <- "Winter break" # Winter break includes days at the start and end of the year, which we can include like this.
+academicDates[c(5:33)] <- "J-term"
+academicDates[c(34:43)] <- "February break"
+academicDates[c(44:76, 86:139)] <- "Spring semester"
+academicDates[c(77:85)] <- "Spring break"
+academicDates[c(140:253)] <- "Summer"
+academicDates[c(254:349)] <- "Fall semester"
+
+academicYear <- calendR(
+        year=2023, # Use the year argument without a month argument, since this will be a yearly calendar.
+        start="S", # Start on Sunday.
+        special.days=academicDates, # Add the variable created above.
+        special.col = c("orange", "lightblue", "deepskyblue", "lightgreen", "darkseagreen1", "lightyellow", "gainsboro"), # Counting the distinct names which we applied to academicDates, I have seven. I therefore need to specify seven colors. This will go in alphabetical order, so I thought of which would come first (Fall semester). 
+        legend.pos = "top", # Add the legend to the top of the output image.
+        pdf = TRUE, # You can also create a PDF directly in your repository folder.
+        orientation="portrait", # Format the output so that it is taller.
+        doc_name = "calendR-year-2023") # This will be the name of the PDF that shows up in the folder. You can't use the same name if you've already knitted before and a PDF was created.
+
+# This does not show up well when knitting. Check the PDF for a much better view of the calendar!
 ```
 
