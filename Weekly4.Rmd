@@ -10,17 +10,19 @@ editor_options:
 library(ggplot2)
 library(tidyverse)
 
-# Holidays taken from https://www.holidayinsights.com/everyday.htm. I am looking at the number of holidays it lists per month. 
+# The holidays were taken from https://www.holidayinsights.com/everyday.htm. I am looking at the number of holidays it lists per month and comparing the means between the first and second half of the year.
 holidays <- c(9, 11, 10, 13, 11, 5, 5, 8, 10, 12, 14, 11)
 months <- c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
 
 yearhalf <- c("First half of year", "Second half of year")
-holidayhalf <- c(holidays[1:6], holidays[7:12])
+holidayhalf <- c(holidays[1:6], holidays[7:12]) #First half of year versus second half of year.
 
 holidayframe <- data.frame(yearhalf, holidayhalf)
 
 holidaymodel <- aov(holidayhalf~yearhalf, data=holidayframe)
-print(summary(holidaymodel)[[1]][1,5]) #p-value
+print(summary(holidaymodel)[[1]][1,5]) # p-value location
+
+# The p-value is indicated to be ~0.9. This means that the average number of holidays per month (according to holidays given by the website linked above) is not significantly different in the first half of the year compared to the second half of the year.
 
 holidayplot <- ggplot(data=holidayframe, aes(x=yearhalf, y=holidayhalf, fill=yearhalf)) + 
   geom_boxplot() +

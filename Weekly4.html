@@ -367,19 +367,21 @@ library(tidyverse)</code></pre>
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()</code></pre>
-<pre class="r"><code># Holidays taken from https://www.holidayinsights.com/everyday.htm. I am looking at the number of holidays it lists per month. 
+<pre class="r"><code># The holidays were taken from https://www.holidayinsights.com/everyday.htm. I am looking at the number of holidays it lists per month and comparing the means between the first and second half of the year.
 holidays &lt;- c(9, 11, 10, 13, 11, 5, 5, 8, 10, 12, 14, 11)
 months &lt;- c(&quot;Jan&quot;, &quot;Feb&quot;, &quot;Mar&quot;, &quot;Apr&quot;, &quot;May&quot;, &quot;Jun&quot;, &quot;Jul&quot;, &quot;Aug&quot;, &quot;Sep&quot;, &quot;Oct&quot;, &quot;Nov&quot;, &quot;Dec&quot;)
 
 yearhalf &lt;- c(&quot;First half of year&quot;, &quot;Second half of year&quot;)
-holidayhalf &lt;- c(holidays[1:6], holidays[7:12])
+holidayhalf &lt;- c(holidays[1:6], holidays[7:12]) #First half of year versus second half of year.
 
 holidayframe &lt;- data.frame(yearhalf, holidayhalf)
 
 holidaymodel &lt;- aov(holidayhalf~yearhalf, data=holidayframe)
-print(summary(holidaymodel)[[1]][1,5]) #p-value</code></pre>
+print(summary(holidaymodel)[[1]][1,5]) # p-value location</code></pre>
 <pre><code>## [1] 0.9238967</code></pre>
-<pre class="r"><code>holidayplot &lt;- ggplot(data=holidayframe, aes(x=yearhalf, y=holidayhalf, fill=yearhalf)) + 
+<pre class="r"><code># The p-value is indicated to be ~0.9. This means that the average number of holidays per month (according to holidays given by the website linked above) is not significantly different in the first half of the year compared to the second half of the year.
+
+holidayplot &lt;- ggplot(data=holidayframe, aes(x=yearhalf, y=holidayhalf, fill=yearhalf)) + 
   geom_boxplot() +
   scale_fill_grey(start=0.8, end=0.5) +
   theme(legend.position=&quot;top&quot;, legend.title= element_blank()) +
